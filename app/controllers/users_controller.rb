@@ -22,14 +22,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_password
-    if current_user.update(user_params) && current_user.save
-      render json: current_user
-    else
-      render json: {errors: current_user.errors}, status: :unprocessable_entity
-    end
-  end
-
   def destroy_me
     if current_user.destroy
       render json: {response: "User with id: #{current_user.id} deleted successfuly"}, status: :ok
