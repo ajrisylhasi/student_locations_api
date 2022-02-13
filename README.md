@@ -1,24 +1,7 @@
-# README
+# Student Locations Api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repo contains the sever sided application for the Student Locations of Deberecen Thesis work
 
-Things you may want to cover:
+Instructions: 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Create a local_env.yml file in the config/ folder with a SITE_URL_DEV, SITE_URL_PROD and a PORT variable

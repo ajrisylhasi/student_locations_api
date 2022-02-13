@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  get 'pages/home'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  scope :api, defaults: {format: :json} do
+    devise_for :users, controllers: {sessions: :sessions},
+                       path_names:  {sign_in: :login}
 
-  # Defines the root path route ("/")
+    resources :users
+
+    get "me/" => "users#me"
+    patch "me/" => "users#update_me"
+    put "me/" => "users#update_me"
+  end
   # root "articles#index"
 end
