@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     render json: current_user
   end
 
-  def update_me
+  def update
     if current_user.update(user_params) && current_user.save
       render json: current_user
     else
@@ -22,27 +22,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy_me
-    if current_user.destroy
-      render json: {response: "User with id: #{current_user.id} deleted successfuly"}, status: :ok
-    elsif !current_user
-      render json: {response: "User with id: #{current_user.id} wasnt found"}, status: :not_found
-    else
-      render json: {response: "User with id: #{current_user.id} couldnt be deleted."}, status: :bad_request
-    end
-  end
-
-  def update
-    render json: {errors: "Not Allowed"}, status: :unprocessable_entity
-  end
-
   def index
     @users = User.all
     render json: @users
-  end
-
-  def destroy
-    render json: {errors: "Not Allowed"}, status: :unprocessable_entity
   end
 
   private
