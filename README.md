@@ -1,4 +1,4 @@
-# Student Locations Api
+# Student Locations Api - Thesis Work
 
 This repo contains the sever sided application for the Student Locations of Deberecen Thesis work
 
