@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :find_place, only: [:show, :update, :destroy]
+  before_action :find_place, only: %i[show update destroy]
 
   def create
     @place = Place.new(place_params)
@@ -39,7 +39,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  
   private
 
   def find_place
