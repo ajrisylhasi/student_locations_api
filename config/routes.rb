@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     get "me/" => "users#me"
     patch "me/" => "users#update"
     put "me/" => "users#update"
+    delete "me/" => "users#destroy"
 
-    resources :places
+    resources :places do 
+      get 'events', to: "places#events"
+    end
+    
+    resources :events
   end
 end

@@ -14,6 +14,10 @@ class UsersController < ApplicationController
     render json: current_user
   end
 
+  def destroy
+    current_user.destroy
+  end
+
   def update
     if current_user.update(user_params) && current_user.save
       render json: current_user

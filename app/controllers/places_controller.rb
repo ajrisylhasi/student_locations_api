@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :find_place, only: %i[show update destroy]
+  before_action :find_place, only: %i[show update destroy events]
 
   def create
     @place = Place.new(place_params)
@@ -23,6 +23,14 @@ class PlacesController < ApplicationController
     render json: @places
   end
 
+  def events
+    if @place
+      render json: @place.events
+    else
+      render json: {errors: "Place not found"}, status: :not_found
+    end
+  end
+
   def update
     if @place.update(place_params) && @place.save
       render json: @place
@@ -42,7 +50,7 @@ class PlacesController < ApplicationController
   private
 
   def find_place
-    @place = Place.find_by_id(params[:id])
+    @place = Place.find_by_id(params[:id]) || Place.find_by_id(params[:place_id])
   end
 
   def place_params
