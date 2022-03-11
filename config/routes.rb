@@ -9,10 +9,12 @@ Rails.application.routes.draw do
     put "me/" => "users#update"
     delete "me/" => "users#destroy"
 
-    resources :places do 
-      get 'events', to: "places#events"
+    resources :places do
+      get "events", to: "places#events"
+      get "reviews", to: "place#"
     end
-    
+
     resources :events
+    resources :reviews
   end
 end

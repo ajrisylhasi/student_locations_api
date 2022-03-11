@@ -6,41 +6,39 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module StudentLocationsApi
-  class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+class StudentLocationsApi::Application < Rails::Application
+  # Initialize configuration defaults for originally generated Rails version.
+  config.load_defaults 7.0
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+  # Configuration for the application, engines, and railties goes here.
+  #
+  # These settings can be overridden in specific environments using the files
+  # in config/environments, which are processed later.
+  #
+  # config.time_zone = "Central Time (US & Canada)"
+  # config.eager_load_paths << Rails.root.join("extras")
 
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
+  # Only loads a smaller set of middleware suitable for API only apps.
+  # Middleware like session, flash, cookies can be added back manually.
+  # Skip views, helpers and assets when generating a new resource.
 
-    config.before_configuration do
-      env_file = File.join(Rails.root, "config", "local_env.yml")
-      if File.exist?(env_file)
-        YAML.load(File.open(env_file)).each do |key, value|
-          ENV[key.to_s] = value
-        end
+  config.before_configuration do
+    env_file = File.join(Rails.root, "config", "local_env.yml")
+    if File.exist?(env_file)
+      YAML.safe_load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
       end
     end
-
-    if Rails.env.development?
-      ENV["SITE_URL"] = ENV["SITE_URL_DEV"]
-    elsif Rails.env.production?
-      ENV["SITE_URL"] = ENV["SITE_URL_PROD"]
-    end
-
-    config.api_only = true
-
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, key: "_namespace_key"
   end
+
+  if Rails.env.development?
+    ENV["SITE_URL"] = ENV["SITE_URL_DEV"]
+  elsif Rails.env.production?
+    ENV["SITE_URL"] = ENV["SITE_URL_PROD"]
+  end
+
+  config.api_only = true
+
+  config.middleware.use ActionDispatch::Cookies
+  config.middleware.use ActionDispatch::Session::CookieStore, key: "_namespace_key"
 end

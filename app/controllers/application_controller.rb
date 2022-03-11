@@ -1,4 +1,4 @@
-require 'authentication_helper'
+require "authentication_helper"
 class ApplicationController < ActionController::API
   include AuthenticationHelper
   respond_to :json
