@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: %i[show update destroy]
+  before_action :find_event, only: %i[show update destroy users participations]
 
   def create
     @event = Event.new(event_params)
@@ -39,10 +39,26 @@ class EventsController < ApplicationController
     end
   end
 
+  def users
+    if @event
+      render json: @event.users
+    else
+      render json: {errors: "Event not found"}, status: :not_found
+    end
+  end
+
+  def participations
+    if @event
+      render json: @event.participations
+    else
+      render json: {errors: "Event not found"}, status: :not_found
+    end
+  end
+
   private
 
   def find_event
-    @event = Event.find_by_id(params[:id])
+    @event = Event.find_by_id(params[:id]) || Event.find_by_id(params[:event_id])
   end
 
   def event_params
