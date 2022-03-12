@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
     resources :places do
       get "events", to: "places#events"
-      get "reviews", to: "place#reviews"
+      get "reviews", to: "places#reviews"
     end
 
     resources :events do 
