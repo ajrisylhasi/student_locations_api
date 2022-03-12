@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_user, only: [:show]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :find_user, only: %i[show events participations]
 
   def show
     if @user
@@ -31,10 +31,26 @@ class UsersController < ApplicationController
     render json: @users
   end
 
+  def events
+    if @user
+      render json: @user.events
+    else
+      render json: {errors: "User not found"}, status: :not_found
+    end
+  end
+
+  def participations
+    if @user
+      render json: @user.participations
+    else
+      render json: {errors: "User not found"}, status: :not_found
+    end
+  end
+
   private
 
   def find_user
-    @user = User.find_by_id(params[:id])
+    @user = User.find_by_id(params[:id]) || User.find_by_id(params[:user_id])
   end
 
   def user_params
