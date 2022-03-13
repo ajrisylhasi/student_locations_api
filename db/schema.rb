@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_227_194_756) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_12_092237) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -33,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 20_220_227_194_756) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "lat"
+    t.float "lng"
     t.index ["name"], name: "index_places_on_name", unique: true
   end
 
@@ -43,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 20_220_227_194_756) do
     t.integer "user_id", null: false
     t.string "reviewable_type"
     t.integer "reviewable_id"
-    t.index %w[reviewable_type reviewable_id], name: "index_reviews_on_reviewable"
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
