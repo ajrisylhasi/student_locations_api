@@ -21,7 +21,7 @@ module AuthenticationHelper
     header = request.headers["Authorization"]
     if header.present?
       begin
-        @decoded = JWT.decode(header, Rails.application.secrets.secret_key_base).first
+        @decoded = JWT.decode(header, Rails.application.secret_key_base).first
         @current_user_id = @decoded["id"]
       rescue ActiveRecord::RecordNotFound => e
         render json: {errors: e.message}, status: :unauthorized
