@@ -7,10 +7,10 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://#{ENV['SITE_URL']}:#{ENV['FRONT_PORT']}"
+    origins "#{ENV["ORIGIN"]}"
 
     resource "*",
-             headers: :any,
-             methods: %i[get post put patch delete options head]
+            headers: :any,
+            methods: %i[get post put patch delete options head]
   end
 end
