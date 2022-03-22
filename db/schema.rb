@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_12_092237) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_22_205658) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_092237) do
     t.integer "user_id", null: false
     t.string "reviewable_type"
     t.integer "reviewable_id"
+    t.integer "value"
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
