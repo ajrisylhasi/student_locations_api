@@ -3,6 +3,6 @@ class Review < ApplicationRecord
   belongs_to :reviewable, polymorphic: true
 
   before_create do
-    self.name = 0
+    self.value = 0
   end
 end
