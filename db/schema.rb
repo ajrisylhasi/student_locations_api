@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_22_205658) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_23_120238) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_22_205658) do
     t.datetime "updated_at", null: false
     t.float "lat"
     t.float "lng"
+    t.text "description"
     t.index ["name"], name: "index_places_on_name", unique: true
   end
 

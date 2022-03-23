@@ -4,5 +4,6 @@ json.array! @places do |place|
   json.lat place.lat
   json.lng place.lng
   json.name place.name
+  json.description place.description
   json.average_rating place.average_rating
 end
