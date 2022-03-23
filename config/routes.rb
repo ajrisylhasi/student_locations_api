@@ -7,10 +7,13 @@ Rails.application.routes.draw do
     patch "me/" => "users#update"
     put "me/" => "users#update"
     delete "me/" => "users#destroy"    
+
+    get "me/places" => "users#my_places"
     
     resources :users, only: %i[index show] do
       get "participations", to: "users#participations"
       get "events", to: "users#events"
+      get "places", to: "users#places"
     end
 
     resources :places do
