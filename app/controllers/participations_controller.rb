@@ -1,6 +1,6 @@
 class ParticipationsController < ApplicationController
-  before_action :set_participation, only: %i[ show update destroy ]
-  before_action :authenticate_user!, only: %i[ update create destroy]
+  before_action :set_participation, only: %i[show update destroy]
+  before_action :authenticate_user!, only: %i[update create destroy]
 
   # GET /participations
   def index
@@ -40,13 +40,14 @@ class ParticipationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_participation
-      @participation = Participation.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def participation_params
-      params.fetch(:participation, {}).permit(:user_id, :event_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_participation
+    @participation = Participation.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def participation_params
+    params.fetch(:participation, {}).permit(:user_id, :event_id)
+  end
 end

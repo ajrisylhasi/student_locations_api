@@ -6,10 +6,10 @@ Rails.application.routes.draw do
     get "me/" => "users#me"
     patch "me/" => "users#update"
     put "me/" => "users#update"
-    delete "me/" => "users#destroy"    
+    delete "me/" => "users#destroy"
 
     get "me/places" => "users#my_places"
-    
+
     resources :users, only: %i[index show] do
       get "participations", to: "users#participations"
       get "events", to: "users#events"
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get "reviews", to: "places#reviews"
     end
 
-    resources :events do 
+    resources :events do
       get "participations", to: "events#participations"
       get "users", to: "events#users"
     end

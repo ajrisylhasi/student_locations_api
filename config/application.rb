@@ -33,9 +33,9 @@ module StudentLocationsApi
     end
 
     if Rails.env.development?
-      ENV["ORIGIN"] = "http://#{ENV["SITE_URL_DEV"]}:#{ENV['FRONT_PORT']}"
+      ENV["ORIGIN"] = "http://#{ENV['SITE_URL_DEV']}:#{ENV['FRONT_PORT']}"
     elsif Rails.env.production?
-      ENV["ORIGIN"] = "https://#{ENV["SITE_URL_PROD"]}"
+      ENV["ORIGIN"] = "https://#{ENV['SITE_URL_PROD']}"
     end
 
     config.api_only = true
