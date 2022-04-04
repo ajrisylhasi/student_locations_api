@@ -5,7 +5,7 @@ Place.create(name: "Life Sciences Library and National Library", category: "Libr
              lng: 21.62123383328685, description: "This is the main city library where mostly Life Sciences students learn.")
 Place.create(name: "Technical University of Debrecen", category: "Campus", lat: 47.536461200545624,
              lng: 21.64103399326681, description: "This is the Technical Faculty of the Univesity of Deberecen.")
-Place.create(name: "Train Station", category: "Transportation Station", lat: 47.5205029, lng: 21.6284862,
+Place.create(name: "Train Station", category: "Transportation", lat: 47.5205029, lng: 21.6284862,
              description: "This is the main station of the city and the most frequented transport building in the city.")
 Place.create(name: "Main Building", category: "Education Building", lat: 47.55360957469289, lng: 21.621530698232196,
              description: "This is the main building of the city, dating from 1538.")

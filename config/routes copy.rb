@@ -4,12 +4,12 @@ Rails.application.routes.draw do
                        path_names:  {sign_in: :login}
 
     scope :me do
-      get "/", to: "users#me"
-      get "places", to: "users#my_places"
-      get "participations", to: "users#my_participations"
-      patch "/", to: "users#update"
-      put "/", to: "users#update"
-      delete "/", to: "users#destroy"
+      get "/" => "users#me"
+      get "places" => "users#my_places"
+      get "participations" => "users#my_participations"
+      patch "/" => "users#update"
+      put "/" => "users#update"
+      delete "/" => "users#destroy"
     end
 
     resources :users, only: %i[index show] do
@@ -26,7 +26,6 @@ Rails.application.routes.draw do
     resources :events do
       get "participations", to: "events#participations"
       get "users", to: "events#users"
-      delete "participation", to: "events#delete_participation"
     end
 
     resources :reviews

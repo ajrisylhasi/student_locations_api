@@ -32,20 +32,15 @@ class UsersController < ApplicationController
   end
 
   def places
-    if @user
-      render json: @user.places
-    else
-      render json: {errors: "User not found"}, status: :not_found
-    end
+    render json: {errors: "User not found"}, status: :not_found unless @user
   end
 
-  def my_places
-    render json: current_user.places
-  end
+  def my_places; end
+  def my_participations; end
 
   def events
     if @user
-      render json: @user.events
+      render json: @user.places.sum([], &:events)
     else
       render json: {errors: "User not found"}, status: :not_found
     end

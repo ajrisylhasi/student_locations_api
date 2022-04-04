@@ -1,4 +1,4 @@
-json.array! @places do |place|
+json.array! current_user.places do |place|
   json.id place.id
   json.category place.category
   json.lng place.lng

@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   before_action :find_place, only: %i[show update destroy events reviews]
-  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :authenticate_user!, only: %i[create update destroy index]
 
   def create
     @place = Place.new(place_params)
@@ -12,11 +12,7 @@ class PlacesController < ApplicationController
   end
 
   def show
-    if @place
-      render json: @place
-    else
-      render json: {errors: "Place not found"}, status: :not_found
-    end
+    render json: {errors: "Place not found"}, status: :not_found unless @place
   end
 
   def index

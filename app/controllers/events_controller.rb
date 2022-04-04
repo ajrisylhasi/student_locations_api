@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: %i[show update destroy users participations]
+  before_action :find_event, only: %i[show update destroy users participations delete_participation]
+  before_action :authenticate_user!, only: %i[delete_participation]
 
   def create
     @event = Event.new(event_params)
@@ -20,7 +21,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
-    render json: @events
   end
 
   def update
@@ -36,6 +36,12 @@ class EventsController < ApplicationController
       render json: {response: "Event deleted successfuly"}
     else
       render json: {errors: @event.errors}, status: :unprocessable_entity
+    end
+  end
+
+  def delete_participation
+    @event.participations.where(user_id: current_user.id).each do |p|
+      p.destroy
     end
   end
 
@@ -62,6 +68,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :place_id)
+    params.require(:event).permit(:name, :time, :place_id)
   end
 end
