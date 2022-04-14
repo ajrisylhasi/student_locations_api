@@ -21,7 +21,7 @@ class PlacesController < ApplicationController
 
   def events
     if @place
-      render json: @place.events
+      @events = @place.events.select { |e| !e.passed }
     else
       render json: {errors: "Place not found"}, status: :not_found
     end
