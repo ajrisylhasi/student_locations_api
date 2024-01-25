@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
   before_action :find_place, only: %i[show update destroy events reviews]
   before_action :authenticate_user!, only: %i[create update destroy index]
-
+  # test
   def create
     @place = Place.new(place_params)
     if @place.save
